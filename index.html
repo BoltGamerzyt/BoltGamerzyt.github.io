@@ -2,212 +2,200 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>BOLT UI</title>
+<title>My Dear Friends</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(circle at top, #1a0a12, #000);
-  color: white;
-  min-height: 100vh;
+/* ===== BODY ===== */
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* ===== BACKGROUND GRID ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,215,0,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,215,0,0.08) 1px, transparent 1px);
+  background-size:60px 60px;
+  z-index:-1;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 2px;
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  border-bottom:1px solid rgba(255,215,0,0.3);
 }
 
-/* HERO */
-.hero {
-  padding: 80px 60px;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 50px;
-  background-image:
-    linear-gradient(rgba(255,0,85,0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,0,85,0.15) 1px, transparent 1px);
-  background-size: 60px 60px;
+nav h2{
+  color:#ffd700;
+  letter-spacing:3px;
 }
 
-.hero h1 {
-  font-size: 52px;
+nav a{
+  color:#ccc;
+  margin-left:25px;
+  text-decoration:none;
 }
 
-.hero h1 span {
-  color: #ff2a7a;
-  text-shadow: 0 0 15px #ff2a7a;
+nav a:hover{
+  color:#ffd700;
 }
 
-.hero p {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #ccc;
+/* ===== HERO ===== */
+.hero{
+  padding:100px 60px;
+  max-width:1200px;
 }
 
-/* FRIEND BUTTONS */
-.friends {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+.hero h1{
+  font-size:60px;
+  font-weight:800;
+  color:#ffd700;
+  text-shadow:
+    0 0 10px #ffd700,
+    0 0 30px #ffcc00;
 }
 
-.friend {
-  padding: 30px;
-  text-align: center;
-  border-radius: 16px;
-  background: rgba(255,0,85,0.08);
-  border: 1px solid rgba(255,0,85,0.4);
-  color: #ff2a7a;
-  font-size: 22px;
-  cursor: pointer;
-  transition: 0.35s;
+.hero p{
+  margin-top:20px;
+  font-size:18px;
+  color:#ddd;
+  max-width:500px;
 }
 
-.friend:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 30px #ff0055;
-  color: white;
+/* ===== BUTTONS ===== */
+.btns{
+  margin-top:40px;
 }
 
-.friend:last-child {
-  grid-column: span 2;
+.btn{
+  display:inline-block;
+  padding:14px 30px;
+  margin-right:15px;
+  border-radius:10px;
+  background:#ffd700;
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 0 20px rgba(255,215,0,0.6);
+  transition:0.3s;
 }
 
-/* LETTER MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 40px rgba(255,215,0,1);
 }
 
-.modal-content {
-  background: rgba(20,0,10,0.95);
-  border: 1px solid #ff0055;
-  box-shadow: 0 0 40px #ff0055;
-  border-radius: 18px;
-  padding: 40px;
-  max-width: 600px;
-  animation: pop 0.4s ease;
+/* ===== FRIEND CARDS ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  padding:60px;
 }
 
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,215,0,0.3);
+  border-radius:16px;
+  padding:30px;
+  text-align:center;
+  transition:0.3s;
 }
 
-.modal h2 {
-  color: #ff2a7a;
-  margin-bottom: 15px;
+.card:hover{
+  box-shadow:0 0 30px rgba(255,215,0,0.8);
 }
 
-.modal p {
-  line-height: 1.7;
-  color: #ddd;
+.card h3{
+  color:#ffd700;
+  margin-bottom:10px;
 }
 
-.close {
-  margin-top: 25px;
-  padding: 10px 20px;
-  border: none;
-  background: #ff0055;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 20px #ff0055;
+.card p{
+  color:#ccc;
+  font-size:14px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-  .hero { grid-template-columns: 1fr; }
-  .friends { grid-template-columns: 1fr; }
-  .friend:last-child { grid-column: span 1; }
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:30px;
+  color:#888;
+  border-top:1px solid rgba(255,215,0,0.3);
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-  <div class="logo">BOLT UI</div>
-</div>
-
-<div class="hero">
+<!-- NAV -->
+<nav>
+  <h2>FRIENDS</h2>
   <div>
-    <h1>Next-Gen <span>Neon UI</span><br>Landing Page</h1>
-    <p>A premium futuristic UI made with pure HTML & CSS.  
-    Click any name to read a personal letter.</p>
+    <a href="#">Home</a>
+    <a href="#">Letters</a>
+    <a href="#">Memories</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>My Dear Friends 💛</h1>
+  <p>
+    This page is specially made for the people who make my life brighter.
+    Every name here opens a letter written from the heart.
+  </p>
+
+  <div class="btns">
+    <a class="btn" href="#">Open Letters</a>
+    <a class="btn" href="#">View Memories</a>
+  </div>
+</section>
+
+<!-- FRIEND CARDS -->
+<section class="cards">
+  <div class="card">
+    <h3>Friend 1</h3>
+    <p>Tap to read a personal letter.</p>
   </div>
 
-  <div class="friends">
-    <div class="friend" onclick="openLetter('azeem')">Azeem</div>
-    <div class="friend" onclick="openLetter('vinayak')">Vinayak</div>
-    <div class="friend" onclick="openLetter('satvik')">Satvik</div>
-    <div class="friend" onclick="openLetter('rajveer')">Rajveer</div>
-    <div class="friend" onclick="openLetter('nadim')">Nadim</div>
+  <div class="card">
+    <h3>Friend 2</h3>
+    <p>Memories & words from heart.</p>
   </div>
-</div>
 
-<!-- LETTERS -->
-<div class="modal" id="modal">
-  <div class="modal-content" id="letterBox"></div>
-</div>
+  <div class="card">
+    <h3>Friend 3</h3>
+    <p>A special message waiting.</p>
+  </div>
 
-<script>
-const letters = {
-  azeem: {
-    title: "Dear Azeem",
-    text: "You are someone who brings strength and loyalty into every friendship. This project carries a piece of your energy and support."
-  },
-  vinayak: {
-    title: "Dear Vinayak",
-    text: "Your mindset, creativity, and calm nature make everything better. This page stands as a small appreciation for you."
-  },
-  satvik: {
-    title: "Dear Satvik",
-    text: "Your intelligence and curiosity inspire growth. This letter exists to remind you how valued you are."
-  },
-  rajveer: {
-    title: "Dear Rajveer",
-    text: "You represent confidence and courage. This UI carries your name as a symbol of strength."
-  },
-  nadim: {
-    title: "Dear Nadim",
-    text: "Your kindness and honesty matter more than you know. This page honors that bond."
-  }
-};
+  <div class="card">
+    <h3>Friend 4</h3>
+    <p>Because friendship matters.</p>
+  </div>
+</section>
 
-function openLetter(name) {
-  document.getElementById("letterBox").innerHTML = `
-    <h2>${letters[name].title}</h2>
-    <p>${letters[name].text}</p>
-    <button class="close" onclick="closeLetter()">Close</button>
-  `;
-  document.getElementById("modal").style.display = "flex";
-}
-
-function closeLetter() {
-  document.getElementById("modal").style.display = "none";
-}
-</script>
+<!-- FOOTER -->
+<footer>
+  Made with 💛 by You
+</footer>
 
 </body>
 </html>
