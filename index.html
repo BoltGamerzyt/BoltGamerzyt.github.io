@@ -1,212 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bolt Gamer YT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Bolt UI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      line-height: 1.6;
-    }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a0010, #000);
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #00ffff33;
-      z-index: 1000;
-    }
+/* GRID BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(#ff005533 1px, transparent 1px),
+    linear-gradient(90deg, #ff005533 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at top, black 30%, transparent 70%);
+  z-index: -1;
+}
 
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      padding: 15px;
-      gap: 30px;
-    }
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ff005533;
+  z-index: 1000;
+}
 
-    nav a {
-      color: #00ffff;
-      text-decoration: none;
-      font-weight: bold;
-      text-shadow: 0 0 6px #00ffff;
-      transition: 0.3s;
-    }
+nav h1 {
+  color: #fff;
+  letter-spacing: 2px;
+}
 
-    nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 12px #00ffff;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
 
-    /* SECTIONS */
-    section {
-      min-height: 100vh;
-      padding: 120px 20px 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-    }
+nav a:hover {
+  color: #ff0055;
+  text-shadow: 0 0 10px #ff0055;
+}
 
-    /* HERO */
-    h1 {
-      font-size: 48px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
-      margin-bottom: 20px;
-    }
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  padding: 140px 10%;
+  display: flex;
+  align-items: center;
+}
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
+/* LEFT HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  width: 100%;
+}
 
-    p {
-      font-size: 18px;
-      margin-bottom: 15px;
-      opacity: 0.9;
-    }
+.hero h2 {
+  font-size: 48px;
+  line-height: 1.2;
+}
 
-    /* GLOW BOX */
-    .box {
-      border: 2px solid #00ffff;
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 0 20px #00ffff55, 0 0 40px #00ffff22;
-      margin-top: 30px;
-    }
+.hero h2 span {
+  color: #ff0055;
+  text-shadow: 0 0 20px #ff0055;
+}
 
-    /* BUTTON */
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 30px;
-      border-radius: 30px;
-      border: 2px solid #00ffff;
-      color: #00ffff;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 15px #00ffff;
-      transition: 0.3s;
-    }
+.hero p {
+  margin-top: 20px;
+  color: #bbb;
+  max-width: 500px;
+}
 
-    .btn:hover {
-      background: #00ffff;
-      color: #000;
-      box-shadow: 0 0 30px #00ffff;
-    }
+/* BUTTON */
+.btn {
+  margin-top: 35px;
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ff0055, #ff3c7d);
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 0 25px #ff0055;
+  transition: 0.3s;
+}
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #00ffff33;
-      font-size: 14px;
-      opacity: 0.7;
-    }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px #ff0055;
+}
 
-    /* ANIMATION */
-    .fade {
-      animation: fadeUp 1.2s ease forwards;
-    }
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #ff005533;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px #ff005533;
+}
+
+.card h3 {
+  color: #ff0055;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  border-top: 1px solid #ff005533;
+}
+
+/* MOBILE */
+@media(max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <h1>BOLT UI</h1>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Windows</a></li>
+    <li><a href="#">Mobile</a></li>
+    <li><a href="#">Community</a></li>
+  </ul>
+</nav>
 
-  <!-- HOME -->
-  <section id="home">
-    <div class="container fade">
-      <h1>⚡ Bolt Gamer YT ⚡</h1>
-      <p>Official website of Bolt Gamer YT</p>
-      <p>Gaming • Tech • Crypto • Future</p>
-      <a class="btn" href="#about">Explore More</a>
+<section>
+  <div class="hero">
+    <div>
+      <h2>Next-Gen <span>Neon UI</span><br>Landing Page</h2>
+      <p>
+        A clean, futuristic and professional UI inspired by premium tech
+        websites. Built fully with pure HTML & CSS.
+      </p>
+      <a href="#" class="btn">Get Started</a>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container fade">
-      <h2>About Me</h2>
-      <div class="box">
-        <p>Hey! I am Bolt Gamer YT.</p>
-        <p>I love gaming, technology, and building cool digital projects.</p>
-        <p>This website is built fully free using GitHub Pages.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Windows</h3>
+        <p>Optimized layout with smooth animations and glow effects.</p>
+      </div>
+      <div class="card">
+        <h3>Android</h3>
+        <p>Mobile-friendly responsive UI with modern design.</p>
+      </div>
+      <div class="card">
+        <h3>iOS</h3>
+        <p>Minimal, clean, and premium looking interface.</p>
+      </div>
+      <div class="card">
+        <h3>Community</h3>
+        <p>Built to look trustworthy and professional.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container fade">
-      <h2>My Projects</h2>
-      <div class="box">
-        <p>🎮 Gaming Content</p>
-        <p>⚡ Bolt Coin Concept</p>
-        <p>💻 Free Websites & Experiments</p>
-        <p>🚀 Future Web3 Ideas</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container fade">
-      <h2>Contact</h2>
-      <div class="box">
-        <p>YouTube: Bolt Gamer YT</p>
-        <p>Email: coming soon</p>
-        <p>More links will be added</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Bolt Gamer YT | Built with 💙 on GitHub Pages
-  </footer>
+<footer>
+  © 2026 Bolt UI • Designed like a Pro ⚡
+</footer>
 
 </body>
 </html>
