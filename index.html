@@ -1,223 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Bolt UI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Bolt UI</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: radial-gradient(circle at top, #1a0010, #000);
-  color: #fff;
-  overflow-x: hidden;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #1a0a12, #000);
+      color: white;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
 
-/* GRID BACKGROUND */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(#ff005533 1px, transparent 1px),
-    linear-gradient(90deg, #ff005533 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle at top, black 30%, transparent 70%);
-  z-index: -1;
-}
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-/* NAVBAR */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 18px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #ff005533;
-  z-index: 1000;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
 
-nav h1 {
-  color: #fff;
-  letter-spacing: 2px;
-}
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
+    .nav-links a:hover {
+      color: #ff2a7a;
+    }
 
-nav a {
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      padding: 80px 60px;
+      background-image:
+        linear-gradient(rgba(255,0,85,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,85,0.15) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
 
-nav a:hover {
-  color: #ff0055;
-  text-shadow: 0 0 10px #ff0055;
-}
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
 
-/* SECTIONS */
-section {
-  min-height: 100vh;
-  padding: 140px 10%;
-  display: flex;
-  align-items: center;
-}
+    .hero h1 span {
+      color: #ff2a7a;
+      text-shadow: 0 0 15px #ff2a7a;
+    }
 
-/* LEFT HERO */
-.hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 50px;
-  width: 100%;
-}
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 520px;
+      margin-bottom: 30px;
+    }
 
-.hero h2 {
-  font-size: 48px;
-  line-height: 1.2;
-}
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #ff0055;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255,0,85,0.6);
+      transition: 0.3s;
+    }
 
-.hero h2 span {
-  color: #ff0055;
-  text-shadow: 0 0 20px #ff0055;
-}
+    .btn:hover {
+      box-shadow: 0 0 35px #ff0055;
+      transform: scale(1.05);
+    }
 
-.hero p {
-  margin-top: 20px;
-  color: #bbb;
-  max-width: 500px;
-}
+    /* FRIEND CARDS */
+    .friends {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
 
-/* BUTTON */
-.btn {
-  margin-top: 35px;
-  display: inline-block;
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #ff0055, #ff3c7d);
-  color: #000;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 0 25px #ff0055;
-  transition: 0.3s;
-}
+    .friend {
+      padding: 35px 20px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      border-radius: 16px;
+      background: rgba(255,0,85,0.08);
+      border: 1px solid rgba(255,0,85,0.4);
+      color: #ff2a7a;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,0,85,0.25);
+      transition: 0.35s;
+    }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 40px #ff0055;
-}
+    .friend:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 0 25px #ff0055, 0 0 45px #ff0055;
+      background: rgba(255,0,85,0.15);
+      color: white;
+    }
 
-/* CARDS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
+    .friend:last-child {
+      grid-column: span 2;
+    }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid #ff005533;
-  border-radius: 15px;
-  padding: 40px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px #ff005533;
-}
-
-.card h3 {
-  color: #ff0055;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 14px;
-  color: #aaa;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #777;
-  border-top: 1px solid #ff005533;
-}
-
-/* MOBILE */
-@media(max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .cards {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .friends {
+        grid-template-columns: 1fr;
+      }
+      .friend:last-child {
+        grid-column: span 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-  <h1>BOLT UI</h1>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Windows</a></li>
-    <li><a href="#">Mobile</a></li>
-    <li><a href="#">Community</a></li>
-  </ul>
-</nav>
-
-<section>
-  <div class="hero">
-    <div>
-      <h2>Next-Gen <span>Neon UI</span><br>Landing Page</h2>
-      <p>
-        A clean, futuristic and professional UI inspired by premium tech
-        websites. Built fully with pure HTML & CSS.
-      </p>
-      <a href="#" class="btn">Get Started</a>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Windows</h3>
-        <p>Optimized layout with smooth animations and glow effects.</p>
-      </div>
-      <div class="card">
-        <h3>Android</h3>
-        <p>Mobile-friendly responsive UI with modern design.</p>
-      </div>
-      <div class="card">
-        <h3>iOS</h3>
-        <p>Minimal, clean, and premium looking interface.</p>
-      </div>
-      <div class="card">
-        <h3>Community</h3>
-        <p>Built to look trustworthy and professional.</p>
-      </div>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">BOLT UI</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Community</a>
     </div>
   </div>
-</section>
 
-<footer>
-  © 2026 Bolt UI • Designed like a Pro ⚡
-</footer>
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div>
+      <h1>Next-Gen <span>Neon UI</span><br>Landing Page</h1>
+      <p>
+        A clean, futuristic and professional landing page inspired by premium
+        tech websites. Fully built using pure HTML & CSS with neon glow effects.
+      </p>
+      <a class="btn" href="#">Get Started</a>
+    </div>
+
+    <!-- FRIENDS -->
+    <div class="friends">
+      <div class="friend">Azeem</div>
+      <div class="friend">Vinayak</div>
+      <div class="friend">Satvik</div>
+      <div class="friend">Rajveer</div>
+      <div class="friend">Nadim</div>
+    </div>
+  </div>
 
 </body>
 </html>
