@@ -6,196 +6,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== RESET ===== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:Segoe UI, sans-serif;
 }
 
-/* ===== BODY ===== */
 body{
   background:#000;
   color:#fff;
-  overflow-x:hidden;
 }
 
-/* ===== BACKGROUND GRID ===== */
+/* YELLOW GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(255,215,0,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,215,0,0.08) 1px, transparent 1px);
+    linear-gradient(rgba(255,215,0,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,215,0,.08) 1px, transparent 1px);
   background-size:60px 60px;
   z-index:-1;
 }
 
-/* ===== NAVBAR ===== */
+/* NAV */
 nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding:20px 60px;
-  border-bottom:1px solid rgba(255,215,0,0.3);
+  border-bottom:1px solid rgba(255,215,0,.3);
 }
 
-nav h2{
-  color:#ffd700;
-  letter-spacing:3px;
+nav h2{ 
+  color:#ffd700; 
+  letter-spacing:2px;
 }
 
-nav a{
-  color:#ccc;
-  margin-left:25px;
-  text-decoration:none;
-}
-
-nav a:hover{
-  color:#ffd700;
-}
-
-/* ===== HERO ===== */
-.hero{
-  padding:100px 60px;
-  max-width:1200px;
-}
-
-.hero h1{
-  font-size:60px;
-  font-weight:800;
-  color:#ffd700;
-  text-shadow:
-    0 0 10px #ffd700,
-    0 0 30px #ffcc00;
-}
-
-.hero p{
-  margin-top:20px;
-  font-size:18px;
-  color:#ddd;
-  max-width:500px;
-}
-
-/* ===== BUTTONS ===== */
-.btns{
-  margin-top:40px;
-}
-
+/* BUTTON */
 .btn{
-  display:inline-block;
-  padding:14px 30px;
-  margin-right:15px;
-  border-radius:10px;
+  padding:14px 28px;
   background:#ffd700;
   color:#000;
+  border:none;
+  border-radius:10px;
   font-weight:600;
-  text-decoration:none;
-  box-shadow:0 0 20px rgba(255,215,0,0.6);
-  transition:0.3s;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,215,0,.6);
 }
 
 .btn:hover{
-  transform:translateY(-3px);
   box-shadow:0 0 40px rgba(255,215,0,1);
 }
 
-/* ===== FRIEND CARDS ===== */
+/* HOME */
+#home{
+  padding:100px 60px;
+}
+
+#home h1{
+  font-size:60px;
+  color:#ffd700;
+  text-shadow:0 0 25px #ffd700;
+}
+
+#home p{
+  margin-top:20px;
+  max-width:520px;
+  color:#ccc;
+}
+
+/* CARDS */
 .cards{
+  margin-top:60px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:30px;
-  padding:60px;
 }
 
 .card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,215,0,0.3);
-  border-radius:16px;
-  padding:30px;
+  padding:35px;
+  border-radius:18px;
+  border:1px solid rgba(255,215,0,.3);
+  background:rgba(255,255,255,.05);
   text-align:center;
-  transition:0.3s;
+  transition:.3s;
 }
 
 .card:hover{
-  box-shadow:0 0 30px rgba(255,215,0,0.8);
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(255,215,0,.4);
 }
 
 .card h3{
   color:#ffd700;
-  margin-bottom:10px;
+  margin-bottom:18px;
+  font-size:24px;
 }
 
-.card p{
-  color:#ccc;
-  font-size:14px;
+/* LETTER PAGE */
+#letter{
+  display:none;
+  padding:100px 60px;
+  max-width:720px;
 }
 
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  padding:30px;
-  color:#888;
-  border-top:1px solid rgba(255,215,0,0.3);
+#letter h1{
+  color:#ffd700;
+  margin-bottom:25px;
+  text-shadow:0 0 20px #ffd700;
+}
+
+#letter p{
+  color:#ddd;
+  line-height:1.9;
+  font-size:18px;
+  margin-bottom:40px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
-  <h2>FRIENDS</h2>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Letters</a>
-    <a href="#">Memories</a>
-  </div>
+  <h2>MY FRIENDS</h2>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HOME -->
+<section id="home">
   <h1>My Dear Friends 💛</h1>
   <p>
-    This page is specially made for the people who make my life brighter.
-    Every name here opens a letter written from the heart.
+    These buttons hold letters written with respect, memories,
+    and friendship. Click any name.
   </p>
 
-  <div class="btns">
-    <a class="btn" href="#">Open Letters</a>
-    <a class="btn" href="#">View Memories</a>
+  <div class="cards">
+    <div class="card">
+      <h3>Satvik</h3>
+      <button class="btn" onclick="openLetter('satvik')">Read Letter</button>
+    </div>
+
+    <div class="card">
+      <h3>Nadim</h3>
+      <button class="btn" onclick="openLetter('nadim')">Read Letter</button>
+    </div>
+
+    <div class="card">
+      <h3>Vinayak</h3>
+      <button class="btn" onclick="openLetter('vinayak')">Read Letter</button>
+    </div>
+
+    <div class="card">
+      <h3>Azeem</h3>
+      <button class="btn" onclick="openLetter('azeem')">Read Letter</button>
+    </div>
   </div>
 </section>
 
-<!-- FRIEND CARDS -->
-<section class="cards">
-  <div class="card">
-    <h3>Friend 1</h3>
-    <p>Tap to read a personal letter.</p>
-  </div>
-
-  <div class="card">
-    <h3>Friend 2</h3>
-    <p>Memories & words from heart.</p>
-  </div>
-
-  <div class="card">
-    <h3>Friend 3</h3>
-    <p>A special message waiting.</p>
-  </div>
-
-  <div class="card">
-    <h3>Friend 4</h3>
-    <p>Because friendship matters.</p>
-  </div>
+<!-- LETTER -->
+<section id="letter">
+  <h1 id="letterTitle"></h1>
+  <p id="letterText"></p>
+  <button class="btn" onclick="goBack()">⬅ Back</button>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  Made with 💛 by You
-</footer>
+<script>
+function openLetter(name){
+  document.getElementById("home").style.display="none";
+  document.getElementById("letter").style.display="block";
+
+  let title="", text="";
+
+  if(name==="satvik"){
+    title="Dear Satvik 💛";
+    text="You have always been calm, smart, and dependable. Your presence brings balance and strength to our friendship. I truly respect you.";
+  }
+
+  if(name==="nadim"){
+    title="Dear Nadim 💛";
+    text="Your kindness and honesty make you special. You stand strong in tough moments, and that makes you someone I trust deeply.";
+  }
+
+  if(name==="vinayak"){
+    title="Dear Vinayak 💛";
+    text="You bring energy, ideas, and positivity everywhere you go. Our friendship is filled with good moments that I’ll always remember.";
+  }
+
+  if(name==="azeem"){
+    title="Dear Azeem 💛";
+    text="You are loyal, supportive, and real. Having a friend like you makes life easier and better. I’m grateful for you.";
+  }
+
+  document.getElementById("letterTitle").innerText = title;
+  document.getElementById("letterText").innerText = text;
+}
+
+function goBack(){
+  document.getElementById("letter").style.display="none";
+  document.getElementById("home").style.display="block";
+}
+</script>
 
 </body>
 </html>
