@@ -18,7 +18,7 @@ body{
   color:#fff;
 }
 
-/* YELLOW GRID BACKGROUND */
+/* BACKGROUND GRID */
 body::before{
   content:"";
   position:fixed;
@@ -36,8 +36,8 @@ nav{
   border-bottom:1px solid rgba(255,215,0,.3);
 }
 
-nav h2{ 
-  color:#ffd700; 
+nav h2{
+  color:#ffd700;
   letter-spacing:2px;
 }
 
@@ -134,8 +134,8 @@ nav h2{
 <section id="home">
   <h1>My Dear Friends 💛</h1>
   <p>
-    These buttons hold letters written with respect, memories,
-    and friendship. Click any name.
+    Every name below opens a personal letter.
+    These are written with respect and friendship.
   </p>
 
   <div class="cards">
@@ -158,6 +158,16 @@ nav h2{
       <h3>Azeem</h3>
       <button class="btn" onclick="openLetter('azeem')">Read Letter</button>
     </div>
+
+    <div class="card">
+      <h3>Rajveer</h3>
+      <button class="btn" onclick="openLetter('rajveer')">Read Letter</button>
+    </div>
+
+    <div class="card">
+      <h3>Aditya</h3>
+      <button class="btn" onclick="openLetter('aditya')">Read Letter</button>
+    </div>
   </div>
 </section>
 
@@ -177,22 +187,32 @@ function openLetter(name){
 
   if(name==="satvik"){
     title="Dear Satvik 💛";
-    text="You have always been calm, smart, and dependable. Your presence brings balance and strength to our friendship. I truly respect you.";
+    text="You are thoughtful, calm, and reliable. Your presence brings balance and trust to our friendship.";
   }
 
   if(name==="nadim"){
     title="Dear Nadim 💛";
-    text="Your kindness and honesty make you special. You stand strong in tough moments, and that makes you someone I trust deeply.";
+    text="Your honesty and strength make you someone I truly respect. I value our friendship a lot.";
   }
 
   if(name==="vinayak"){
     title="Dear Vinayak 💛";
-    text="You bring energy, ideas, and positivity everywhere you go. Our friendship is filled with good moments that I’ll always remember.";
+    text="Your energy and ideas always lift the mood. Friendship with you is full of good memories.";
   }
 
   if(name==="azeem"){
     title="Dear Azeem 💛";
-    text="You are loyal, supportive, and real. Having a friend like you makes life easier and better. I’m grateful for you.";
+    text="You are loyal and supportive. Having you as a friend is something I’m grateful for.";
+  }
+
+  if(name==="rajveer"){
+    title="Dear Rajveer 💛";
+    text="You are confident and strong-minded. Your determination inspires the people around you.";
+  }
+
+  if(name==="aditya"){
+    title="Dear Aditya 💛";
+    text="You bring positivity and sincerity into friendships. Your presence always feels genuine.";
   }
 
   document.getElementById("letterTitle").innerText = title;
