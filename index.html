@@ -2,226 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Dear Friends</title>
+<title>BOLT UI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Segoe UI, sans-serif;
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
+/* ===== BODY ===== */
+body {
+  background: #000;
+  color: #ffd700;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ANIMATED GRID */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
+/* ===== GRID BACKGROUND ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background:
-    linear-gradient(rgba(255,215,0,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,215,0,.06) 1px, transparent 1px);
-  background-size:60px 60px;
-  animation:moveGrid 20s linear infinite;
-  z-index:-1;
+    linear-gradient(#ffd70022 1px, transparent 1px),
+    linear-gradient(90deg, #ffd70022 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
 }
 
-@keyframes moveGrid{
-  from{background-position:0 0,0 0;}
-  to{background-position:600px 600px,600px 600px;}
+/* ===== NAVBAR ===== */
+nav {
+  padding: 20px 40px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  border-bottom: 1px solid #ffd70044;
 }
 
-/* NAV */
-nav{
-  padding:20px 60px;
-  border-bottom:1px solid rgba(255,215,0,.3);
-  font-weight:700;
-  letter-spacing:2px;
-  color:#ffd700;
+/* ===== HERO ===== */
+.hero {
+  padding: 60px 40px;
 }
 
-/* HOME */
-#home, #letter{
-  padding:100px 60px;
-  transition:opacity .4s ease, transform .4s ease;
+.hero h1 {
+  font-size: 56px;
+  text-shadow: 0 0 20px #ffd700;
 }
 
-.hidden{
-  opacity:0;
-  transform:translateY(30px);
-  pointer-events:none;
-  position:absolute;
+.hero p {
+  margin-top: 15px;
+  color: #ccc;
+  max-width: 600px;
 }
 
-/* TITLE */
-h1{
-  font-size:60px;
-  color:#ffd700;
-  text-shadow:0 0 30px #ffd700;
+/* ===== FRIENDS GRID ===== */
+.friends {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
 }
 
-/* TEXT */
-p{
-  margin-top:20px;
-  max-width:520px;
-  color:#ccc;
-  line-height:1.8;
+/* ===== CARD ===== */
+.card {
+  border: 1px solid #ffd70055;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  background: #000;
+  box-shadow: 0 0 20px #ffd70022;
+  transition: 0.3s ease;
 }
 
-/* CARDS */
-.cards{
-  margin-top:60px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px #ffd700;
 }
 
-.card{
-  padding:35px;
-  border-radius:18px;
-  border:1px solid rgba(255,215,0,.3);
-  background:rgba(255,255,255,.05);
-  text-align:center;
-  cursor:pointer;
-  transition:.35s;
-  position:relative;
-  overflow:hidden;
+.card h2 {
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ffd700;
 }
 
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center, rgba(255,215,0,.15), transparent 60%);
-  opacity:0;
-  transition:.3s;
+/* ===== BUTTON ===== */
+button {
+  padding: 10px 28px;
+  border-radius: 30px;
+  border: none;
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ffd700;
+  transition: 0.3s;
 }
 
-.card:hover::after{opacity:1;}
-
-.card:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 0 40px rgba(255,215,0,.6);
+button:hover {
+  box-shadow: 0 0 40px #ffd700;
+  transform: scale(1.05);
 }
 
-.card h3{
-  color:#ffd700;
-  margin-bottom:15px;
-  font-size:24px;
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
-/* BUTTON */
-.btn{
-  margin-top:10px;
-  padding:12px 26px;
-  border:none;
-  border-radius:10px;
-  background:#ffd700;
-  color:#000;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(255,215,0,.6);
+.modal-content {
+  background: #000;
+  border: 1px solid #ffd700;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  box-shadow: 0 0 40px #ffd700;
+  animation: pop 0.4s ease;
 }
 
-/* LETTER */
-#letter h1{
-  margin-bottom:20px;
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-#letterText{
-  font-size:19px;
-  color:#ddd;
-  min-height:160px;
+.modal-content h2 {
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #ffd700;
 }
 
-/* CURSOR GLOW */
-.cursor{
-  position:fixed;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:rgba(255,215,0,.6);
-  pointer-events:none;
-  box-shadow:0 0 20px #ffd700;
-  transform:translate(-50%,-50%);
+.close {
+  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor" id="cursor"></div>
+<nav>BOLT UI ⚡</nav>
 
-<nav>MY FRIENDS</nav>
-
-<section id="home">
+<section class="hero">
   <h1>My Dear Friends 💛</h1>
   <p>Each name opens a letter written with respect, memories, and loyalty.</p>
 
-  <div class="cards">
-    <div class="card" onclick="openLetter('Satvik')"><h3>Satvik</h3><button class="btn">Read</button></div>
-    <div class="card" onclick="openLetter('Nadim')"><h3>Nadim</h3><button class="btn">Read</button></div>
-    <div class="card" onclick="openLetter('Vinayak')"><h3>Vinayak</h3><button class="btn">Read</button></div>
-    <div class="card" onclick="openLetter('Azeem')"><h3>Azeem</h3><button class="btn">Read</button></div>
-    <div class="card" onclick="openLetter('Rajveer')"><h3>Rajveer</h3><button class="btn">Read</button></div>
-    <div class="card" onclick="openLetter('Aditya')"><h3>Aditya</h3><button class="btn">Read</button></div>
+  <div class="friends">
+    <div class="card"><h2>Satvik</h2><button onclick="openLetter('satvik')">Read</button></div>
+    <div class="card"><h2>Nadim</h2><button onclick="openLetter('nadim')">Read</button></div>
+    <div class="card"><h2>Vinayak</h2><button onclick="openLetter('vinayak')">Read</button></div>
+    <div class="card"><h2>Azeem</h2><button onclick="openLetter('azeem')">Read</button></div>
+    <div class="card"><h2>Rajveer</h2><button onclick="openLetter('rajveer')">Read</button></div>
+    <div class="card"><h2>Aditya</h2><button onclick="openLetter('aditya')">Read</button></div>
   </div>
 </section>
 
-<section id="letter" class="hidden">
-  <h1 id="letterTitle"></h1>
-  <p id="letterText"></p>
-  <button class="btn" onclick="goBack()">⬅ Back</button>
-</section>
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2 id="letterTitle"></h2>
+    <p id="letterText"></p>
+    <button class="close" onclick="closeLetter()">Close</button>
+  </div>
+</div>
 
 <script>
-/* LETTER DATA */
-const letters={
-  Satvik:"You bring calm strength and intelligence. Respect always.",
-  Nadim:"Your honesty and courage define you. Proud to call you my friend.",
-  Vinayak:"Your energy and mindset make every moment better.",
-  Azeem:"Loyal, real, and dependable. Friendship at its best.",
-  Rajveer:"Strong will and confidence — you inspire people around you.",
-  Aditya:"Positive, sincere, and grounded. A genuine soul."
+const letters = {
+  satvik: "Satvik, you are a true brother. Your loyalty, humor, and support mean more than words.",
+  nadim: "Nadim, your calm nature and honesty make you someone I deeply respect.",
+  vinayak: "Vinayak, your energy and mindset inspire everyone around you. Stay strong always.",
+  azeem: "Azeem, you stand like a pillar in friendship. Trust and respect forever.",
+  rajveer: "Rajveer, courage and heart define you. Proud to call you my friend.",
+  aditya: "Aditya, your presence brings positivity. Keep shining, always."
 };
 
-/* OPEN LETTER */
-function openLetter(name){
-  home.classList.add("hidden");
-  letter.classList.remove("hidden");
-  letterTitle.innerText="Dear "+name+" 💛";
-  typeText(letters[name]);
+function openLetter(name) {
+  document.getElementById("letterTitle").innerText = name.toUpperCase();
+  document.getElementById("letterText").innerText = letters[name];
+  document.getElementById("modal").style.display = "flex";
 }
 
-/* TYPE EFFECT */
-function typeText(text){
-  letterText.innerText="";
-  let i=0;
-  let timer=setInterval(()=>{
-    letterText.innerText+=text[i];
-    i++;
-    if(i>=text.length) clearInterval(timer);
-  },40);
+function closeLetter() {
+  document.getElementById("modal").style.display = "none";
 }
-
-/* BACK */
-function goBack(){
-  letter.classList.add("hidden");
-  home.classList.remove("hidden");
-}
-
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",e=>{
-  cursor.style.left=e.clientX+"px";
-  cursor.style.top=e.clientY+"px";
-});
 </script>
 
 </body>
