@@ -16,69 +16,69 @@
 body{
   background:#000;
   color:#fff;
+  overflow-x:hidden;
 }
 
-/* BACKGROUND GRID */
+/* ANIMATED GRID */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(255,215,0,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,215,0,.08) 1px, transparent 1px);
+    linear-gradient(rgba(255,215,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,215,0,.06) 1px, transparent 1px);
   background-size:60px 60px;
+  animation:moveGrid 20s linear infinite;
   z-index:-1;
+}
+
+@keyframes moveGrid{
+  from{background-position:0 0,0 0;}
+  to{background-position:600px 600px,600px 600px;}
 }
 
 /* NAV */
 nav{
   padding:20px 60px;
   border-bottom:1px solid rgba(255,215,0,.3);
-}
-
-nav h2{
-  color:#ffd700;
+  font-weight:700;
   letter-spacing:2px;
-}
-
-/* BUTTON */
-.btn{
-  padding:14px 28px;
-  background:#ffd700;
-  color:#000;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(255,215,0,.6);
-}
-
-.btn:hover{
-  box-shadow:0 0 40px rgba(255,215,0,1);
+  color:#ffd700;
 }
 
 /* HOME */
-#home{
+#home, #letter{
   padding:100px 60px;
+  transition:opacity .4s ease, transform .4s ease;
 }
 
-#home h1{
+.hidden{
+  opacity:0;
+  transform:translateY(30px);
+  pointer-events:none;
+  position:absolute;
+}
+
+/* TITLE */
+h1{
   font-size:60px;
   color:#ffd700;
-  text-shadow:0 0 25px #ffd700;
+  text-shadow:0 0 30px #ffd700;
 }
 
-#home p{
+/* TEXT */
+p{
   margin-top:20px;
   max-width:520px;
   color:#ccc;
+  line-height:1.8;
 }
 
 /* CARDS */
 .cards{
   margin-top:60px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:30px;
 }
 
@@ -88,141 +88,140 @@ nav h2{
   border:1px solid rgba(255,215,0,.3);
   background:rgba(255,255,255,.05);
   text-align:center;
+  cursor:pointer;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(255,215,0,.15), transparent 60%);
+  opacity:0;
   transition:.3s;
 }
 
+.card:hover::after{opacity:1;}
+
 .card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 30px rgba(255,215,0,.4);
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 0 40px rgba(255,215,0,.6);
 }
 
 .card h3{
   color:#ffd700;
-  margin-bottom:18px;
+  margin-bottom:15px;
   font-size:24px;
 }
 
-/* LETTER PAGE */
-#letter{
-  display:none;
-  padding:100px 60px;
-  max-width:720px;
+/* BUTTON */
+.btn{
+  margin-top:10px;
+  padding:12px 26px;
+  border:none;
+  border-radius:10px;
+  background:#ffd700;
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,215,0,.6);
 }
 
+/* LETTER */
 #letter h1{
-  color:#ffd700;
-  margin-bottom:25px;
-  text-shadow:0 0 20px #ffd700;
+  margin-bottom:20px;
 }
 
-#letter p{
+#letterText{
+  font-size:19px;
   color:#ddd;
-  line-height:1.9;
-  font-size:18px;
-  margin-bottom:40px;
+  min-height:160px;
+}
+
+/* CURSOR GLOW */
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(255,215,0,.6);
+  pointer-events:none;
+  box-shadow:0 0 20px #ffd700;
+  transform:translate(-50%,-50%);
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h2>MY FRIENDS</h2>
-</nav>
+<div class="cursor" id="cursor"></div>
 
-<!-- HOME -->
+<nav>MY FRIENDS</nav>
+
 <section id="home">
   <h1>My Dear Friends 💛</h1>
-  <p>
-    Every name below opens a personal letter.
-    These are written with respect and friendship.
-  </p>
+  <p>Each name opens a letter written with respect, memories, and loyalty.</p>
 
   <div class="cards">
-    <div class="card">
-      <h3>Satvik</h3>
-      <button class="btn" onclick="openLetter('satvik')">Read Letter</button>
-    </div>
-
-    <div class="card">
-      <h3>Nadim</h3>
-      <button class="btn" onclick="openLetter('nadim')">Read Letter</button>
-    </div>
-
-    <div class="card">
-      <h3>Vinayak</h3>
-      <button class="btn" onclick="openLetter('vinayak')">Read Letter</button>
-    </div>
-
-    <div class="card">
-      <h3>Azeem</h3>
-      <button class="btn" onclick="openLetter('azeem')">Read Letter</button>
-    </div>
-
-    <div class="card">
-      <h3>Rajveer</h3>
-      <button class="btn" onclick="openLetter('rajveer')">Read Letter</button>
-    </div>
-
-    <div class="card">
-      <h3>Aditya</h3>
-      <button class="btn" onclick="openLetter('aditya')">Read Letter</button>
-    </div>
+    <div class="card" onclick="openLetter('Satvik')"><h3>Satvik</h3><button class="btn">Read</button></div>
+    <div class="card" onclick="openLetter('Nadim')"><h3>Nadim</h3><button class="btn">Read</button></div>
+    <div class="card" onclick="openLetter('Vinayak')"><h3>Vinayak</h3><button class="btn">Read</button></div>
+    <div class="card" onclick="openLetter('Azeem')"><h3>Azeem</h3><button class="btn">Read</button></div>
+    <div class="card" onclick="openLetter('Rajveer')"><h3>Rajveer</h3><button class="btn">Read</button></div>
+    <div class="card" onclick="openLetter('Aditya')"><h3>Aditya</h3><button class="btn">Read</button></div>
   </div>
 </section>
 
-<!-- LETTER -->
-<section id="letter">
+<section id="letter" class="hidden">
   <h1 id="letterTitle"></h1>
   <p id="letterText"></p>
   <button class="btn" onclick="goBack()">⬅ Back</button>
 </section>
 
 <script>
+/* LETTER DATA */
+const letters={
+  Satvik:"You bring calm strength and intelligence. Respect always.",
+  Nadim:"Your honesty and courage define you. Proud to call you my friend.",
+  Vinayak:"Your energy and mindset make every moment better.",
+  Azeem:"Loyal, real, and dependable. Friendship at its best.",
+  Rajveer:"Strong will and confidence — you inspire people around you.",
+  Aditya:"Positive, sincere, and grounded. A genuine soul."
+};
+
+/* OPEN LETTER */
 function openLetter(name){
-  document.getElementById("home").style.display="none";
-  document.getElementById("letter").style.display="block";
-
-  let title="", text="";
-
-  if(name==="satvik"){
-    title="Dear Satvik 💛";
-    text="You are thoughtful, calm, and reliable. Your presence brings balance and trust to our friendship.";
-  }
-
-  if(name==="nadim"){
-    title="Dear Nadim 💛";
-    text="Your honesty and strength make you someone I truly respect. I value our friendship a lot.";
-  }
-
-  if(name==="vinayak"){
-    title="Dear Vinayak 💛";
-    text="Your energy and ideas always lift the mood. Friendship with you is full of good memories.";
-  }
-
-  if(name==="azeem"){
-    title="Dear Azeem 💛";
-    text="You are loyal and supportive. Having you as a friend is something I’m grateful for.";
-  }
-
-  if(name==="rajveer"){
-    title="Dear Rajveer 💛";
-    text="You are confident and strong-minded. Your determination inspires the people around you.";
-  }
-
-  if(name==="aditya"){
-    title="Dear Aditya 💛";
-    text="You bring positivity and sincerity into friendships. Your presence always feels genuine.";
-  }
-
-  document.getElementById("letterTitle").innerText = title;
-  document.getElementById("letterText").innerText = text;
+  home.classList.add("hidden");
+  letter.classList.remove("hidden");
+  letterTitle.innerText="Dear "+name+" 💛";
+  typeText(letters[name]);
 }
 
+/* TYPE EFFECT */
+function typeText(text){
+  letterText.innerText="";
+  let i=0;
+  let timer=setInterval(()=>{
+    letterText.innerText+=text[i];
+    i++;
+    if(i>=text.length) clearInterval(timer);
+  },40);
+}
+
+/* BACK */
 function goBack(){
-  document.getElementById("letter").style.display="none";
-  document.getElementById("home").style.display="block";
+  letter.classList.add("hidden");
+  home.classList.remove("hidden");
 }
+
+/* CURSOR */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
 </script>
 
 </body>
