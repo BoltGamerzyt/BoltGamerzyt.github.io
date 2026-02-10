@@ -6,188 +6,193 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;scroll-behavior:smooth}
+body{background:#000;color:#ffd400}
+
+.glow{text-shadow:0 0 10px #ffd400,0 0 25px #ffd400}
+
+body::before{
+content:"";position:fixed;inset:0;
+background:
+linear-gradient(rgba(255,212,0,.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,212,0,.08) 1px, transparent 1px);
+background-size:40px 40px;z-index:-1;
 }
 
-/* ===== BODY ===== */
-body {
-  background: #000;
-  color: #ffd700;
-  min-height: 100vh;
-  overflow-x: hidden;
+nav{
+position:fixed;top:0;width:100%;
+padding:15px 40px;
+display:flex;justify-content:space-between;
+background:rgba(0,0,0,.9);
+border-bottom:1px solid #ffd400;z-index:100;
 }
 
-/* ===== GRID BACKGROUND ===== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(#ffd70022 1px, transparent 1px),
-    linear-gradient(90deg, #ffd70022 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: -1;
+section{min-height:100vh;padding:120px 60px}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:35px;margin-top:60px;
 }
 
-/* ===== NAVBAR ===== */
-nav {
-  padding: 20px 40px;
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  border-bottom: 1px solid #ffd70044;
+.card{
+border:1px solid #ffd400;
+padding:30px;border-radius:18px;
+box-shadow:0 0 25px rgba(255,212,0,.2);
+background:rgba(255,212,0,.04);
+transition:.3s;
+}
+.card:hover{transform:translateY(-8px)}
+
+.btn{
+padding:10px 22px;
+background:#ffd400;color:#000;
+border:none;border-radius:20px;
+cursor:pointer;font-weight:bold;
+box-shadow:0 0 15px #ffd400;
+margin-top:10px;
 }
 
-/* ===== HERO ===== */
-.hero {
-  padding: 60px 40px;
+.like-btn{
+background:none;border:none;
+color:#ffd400;
+font-size:20px;
+cursor:pointer;
 }
 
-.hero h1 {
-  font-size: 56px;
-  text-shadow: 0 0 20px #ffd700;
+.popup{
+position:fixed;inset:0;
+background:rgba(0,0,0,.8);
+display:none;justify-content:center;align-items:center;
+z-index:200;
 }
 
-.hero p {
-  margin-top: 15px;
-  color: #ccc;
-  max-width: 600px;
+.popup-box{
+background:#000;border:1px solid #ffd400;
+padding:35px;border-radius:20px;
+width:90%;max-width:500px;
+box-shadow:0 0 50px #ffd400;
 }
 
-/* ===== FRIENDS GRID ===== */
-.friends {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
+textarea{
+width:100%;margin-top:15px;
+background:#000;color:#ffd400;
+border:1px solid #ffd400;
+padding:10px;border-radius:10px;
+resize:none;
 }
 
-/* ===== CARD ===== */
-.card {
-  border: 1px solid #ffd70055;
-  border-radius: 16px;
-  padding: 30px;
-  text-align: center;
-  background: #000;
-  box-shadow: 0 0 20px #ffd70022;
-  transition: 0.3s ease;
+.comment{
+margin-top:10px;
+padding:8px;
+border-bottom:1px solid rgba(255,212,0,.3);
+font-size:14px;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 35px #ffd700;
-}
-
-.card h2 {
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px #ffd700;
-}
-
-/* ===== BUTTON ===== */
-button {
-  padding: 10px 28px;
-  border-radius: 30px;
-  border: none;
-  background: #ffd700;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 20px #ffd700;
-  transition: 0.3s;
-}
-
-button:hover {
-  box-shadow: 0 0 40px #ffd700;
-  transform: scale(1.05);
-}
-
-/* ===== MODAL ===== */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.modal-content {
-  background: #000;
-  border: 1px solid #ffd700;
-  border-radius: 16px;
-  padding: 30px;
-  max-width: 500px;
-  box-shadow: 0 0 40px #ffd700;
-  animation: pop 0.4s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.modal-content h2 {
-  margin-bottom: 15px;
-  text-shadow: 0 0 10px #ffd700;
-}
-
-.close {
-  margin-top: 20px;
-}
+footer{text-align:center;padding:30px;border-top:1px solid #ffd400}
 </style>
 </head>
 
 <body>
 
-<nav>BOLT UI ⚡</nav>
+<nav>
+<h2 class="glow">BOLT UI</h2>
+</nav>
 
-<section class="hero">
-  <h1>My Dear Friends 💛</h1>
-  <p>Each name opens a letter written with respect, memories, and loyalty.</p>
+<section>
+<h1 class="glow">My Dear Friends 💛</h1>
 
-  <div class="friends">
-    <div class="card"><h2>Satvik</h2><button onclick="openLetter('satvik')">Read</button></div>
-    <div class="card"><h2>Nadim</h2><button onclick="openLetter('nadim')">Read</button></div>
-    <div class="card"><h2>Vinayak</h2><button onclick="openLetter('vinayak')">Read</button></div>
-    <div class="card"><h2>Azeem</h2><button onclick="openLetter('azeem')">Read</button></div>
-    <div class="card"><h2>Rajveer</h2><button onclick="openLetter('rajveer')">Read</button></div>
-    <div class="card"><h2>Aditya</h2><button onclick="openLetter('aditya')">Read</button></div>
-  </div>
+<div class="cards">
+<div class="card"><h3>Satvik</h3><button class="btn" onclick="openLetter('Satvik')">Open Letter</button></div>
+<div class="card"><h3>Nadim</h3><button class="btn" onclick="openLetter('Nadim')">Open Letter</button></div>
+<div class="card"><h3>Vinayak</h3><button class="btn" onclick="openLetter('Vinayak')">Open Letter</button></div>
+<div class="card"><h3>Azeem</h3><button class="btn" onclick="openLetter('Azeem')">Open Letter</button></div>
+<div class="card"><h3>Rajveer</h3><button class="btn" onclick="openLetter('Rajveer')">Open Letter</button></div>
+<div class="card"><h3>Aditya</h3><button class="btn" onclick="openLetter('Aditya')">Open Letter</button></div>
+</div>
 </section>
 
-<!-- ===== MODAL ===== -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h2 id="letterTitle"></h2>
-    <p id="letterText"></p>
-    <button class="close" onclick="closeLetter()">Close</button>
-  </div>
+<footer>⚡ Built with Bolt UI</footer>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-box">
+<h2 id="pname" class="glow"></h2>
+<p id="ptext"></p>
+
+<!-- LIKE -->
+<button class="like-btn" onclick="likeLetter()">❤️ <span id="likes">0</span></button>
+
+<!-- COMMENT -->
+<textarea id="commentInput" rows="3" placeholder="Write a comment..."></textarea>
+<button class="btn" onclick="addComment()">Comment</button>
+
+<div id="comments"></div>
+
+<button class="btn" style="margin-top:20px" onclick="closePopup()">Close</button>
+</div>
 </div>
 
 <script>
-const letters = {
-  satvik: "Satvik, you are a true brother. Your loyalty, humor, and support mean more than words.",
-  nadim: "Nadim, your calm nature and honesty make you someone I deeply respect.",
-  vinayak: "Vinayak, your energy and mindset inspire everyone around you. Stay strong always.",
-  azeem: "Azeem, you stand like a pillar in friendship. Trust and respect forever.",
-  rajveer: "Rajveer, courage and heart define you. Proud to call you my friend.",
-  aditya: "Aditya, your presence brings positivity. Keep shining, always."
+let current="";
+
+const letters={
+Satvik:"Solid, loyal and always real.",
+Nadim:"Brotherhood built on respect.",
+Vinayak:"Calm mind, strong heart.",
+Azeem:"Fearless energy & loyalty.",
+Rajveer:"Royal vibes, pure bond.",
+Aditya:"Smart, steady and dependable."
 };
 
-function openLetter(name) {
-  document.getElementById("letterTitle").innerText = name.toUpperCase();
-  document.getElementById("letterText").innerText = letters[name];
-  document.getElementById("modal").style.display = "flex";
+function openLetter(name){
+current=name;
+document.getElementById("pname").innerText=name;
+document.getElementById("ptext").innerText=letters[name];
+document.getElementById("popup").style.display="flex";
+loadLikes();
+loadComments();
 }
 
-function closeLetter() {
-  document.getElementById("modal").style.display = "none";
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+/* LIKE SYSTEM */
+function likeLetter(){
+let likes=localStorage.getItem("like_"+current)||0;
+likes++;
+localStorage.setItem("like_"+current,likes);
+document.getElementById("likes").innerText=likes;
+}
+
+function loadLikes(){
+document.getElementById("likes").innerText=
+localStorage.getItem("like_"+current)||0;
+}
+
+/* COMMENTS */
+function addComment(){
+let input=document.getElementById("commentInput");
+if(input.value.trim()=="")return;
+
+let comments=JSON.parse(localStorage.getItem("com_"+current)||"[]");
+comments.push(input.value);
+localStorage.setItem("com_"+current,JSON.stringify(comments));
+input.value="";
+loadComments();
+}
+
+function loadComments(){
+let box=document.getElementById("comments");
+box.innerHTML="";
+let comments=JSON.parse(localStorage.getItem("com_"+current)||"[]");
+comments.forEach(c=>{
+let div=document.createElement("div");
+div.className="comment";
+div.innerText=c;
+box.appendChild(div);
+});
 }
 </script>
 
